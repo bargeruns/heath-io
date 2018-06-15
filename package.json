@@ -1,0 +1,28 @@
+{
+  "name": "heath-io",
+  "version": "1.0.0",
+  "description": "View real-time updates from leading cryptocurrency markets.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bargeruns/heath-io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bargeruns/heath-io/issues"
+  },
+  "homepage": "https://github.com/bargeruns/heath-io#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "jasmine": "^3.1.0",
+    "socket.io": "^2.1.1"
+  },
+  "devDependencies": {
+    "supertest": "^3.1.0"
+  }
+}

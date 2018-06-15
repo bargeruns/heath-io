@@ -4,7 +4,7 @@
   "description": "View real-time updates from leading cryptocurrency markets.",
   "main": "index.js",
   "scripts": {
-    "test": "npx jasmine"
+    "test": "npx mocha spec/**/*.spec.js --watch"
   },
   "repository": {
     "type": "git",
@@ -18,11 +18,14 @@
   },
   "homepage": "https://github.com/bargeruns/heath-io#readme",
   "dependencies": {
+    "axios": "^0.18.0",
     "express": "^4.16.3",
-    "jasmine": "^3.1.0",
     "socket.io": "^2.1.1"
   },
   "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0",
+    "sinon": "^6.0.0",
     "supertest": "^3.1.0"
   }
 }

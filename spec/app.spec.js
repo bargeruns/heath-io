@@ -1,29 +1,13 @@
 const app = require('../app.js');
 const request = require('supertest');
+const should = require('chai').should();
 
-describe('main express application', () => {
-  it ('should listen and respond to requests at root', (done) => {
+  it('should listen and respond to requests at root', (done) => {
     request(app)
       .get('/')
       .expect(200)
       .end((err, res) => {
-        if(err) {
-          throw err;
-        }
+        should.not.exist(err);
         done();
       });
   });
-
-  it('should return client app entry on request to /', (done) => {
-    request(app)
-      .get('/')
-      .expect(200)
-      .expect('Content-Type', /html/)
-      .end((err, res) => {
-        if (err) {
-          throw err;
-        }
-        done();
-      });
-  })
-});

@@ -1,13 +1,16 @@
 const app = require('../app.js');
 const request = require('supertest');
-const should = require('chai').should();
+const io     = require('socket.io-client');
 
-  it('should listen and respond to requests at root', (done) => {
+describe('express app', () => {
+  it('should serve client app at /', (done) => {
     request(app)
       .get('/')
       .expect(200)
+      .expect('Content-Type', /html/)
       .end((err, res) => {
-        should.not.exist(err);
+        if (err) throw err;
         done();
       });
   });
+});

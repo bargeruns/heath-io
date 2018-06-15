@@ -4,7 +4,7 @@
   "description": "View real-time updates from leading cryptocurrency markets.",
   "main": "index.js",
   "scripts": {
-    "test": "npx mocha spec/**/*.spec.js --watch"
+    "test": "npx jasmine"
   },
   "repository": {
     "type": "git",
@@ -20,12 +20,13 @@
   "dependencies": {
     "axios": "^0.18.0",
     "express": "^4.16.3",
-    "socket.io": "^2.1.1"
+    "rx.wamp": "^0.5.0",
+    "rxjs": "^6.2.1",
+    "socket.io": "^2.1.1",
+    "socket.io-client": "^2.1.1"
   },
   "devDependencies": {
-    "chai": "^4.1.2",
-    "mocha": "^5.2.0",
-    "sinon": "^6.0.0",
+    "jasmine": "^3.1.0",
     "supertest": "^3.1.0"
   }
 }

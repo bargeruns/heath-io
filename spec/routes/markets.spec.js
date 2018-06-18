@@ -1,4 +1,4 @@
-const app = require('../../app.js');
+const app = require('../../app.js').app;
 const request = require('supertest');
 
 describe('market routes', () => {
@@ -6,74 +6,46 @@ describe('market routes', () => {
     request(app)
       .get('/markets')
       .expect(200)
-      .expect('Content-Type', /json/)
-      .end((err, res) => {
-        if (err) throw err;
-        done();
-      });
+      .expect('Content-Type', /json/, done);
     });
 
     it('should return 24-hour summary of a given market', done => {
       request(app)
         .get('/markets/summary?market=BTC-ETH')
         .expect(200)
-        .expect('Content-Type', /json/)
-        .end((err, res) => {
-          if (err) throw err;
-          done();
-        });
+        .expect('Content-Type', /json/, done);
     });
+
     it('should return 24-hour summary of a given market', done => {
       request(app)
         .get('/markets/summary?market=BTC-DOGE')
         .expect(200)
-        .expect('Content-Type', /json/)
-        .end((err, res) => {
-          if (err) throw err;
-          done();
-        });
+        .expect('Content-Type', /json/, done);
     });
+
     it('should return 24-hour summary of a given market', done => {
       request(app)
         .get('/markets/summary?market=BTC-LTC')
         .expect(200)
-        .expect('Content-Type', /json/)
-        .end((err, res) => {
-          if (err) throw err;
-          done();
-        });
+        .expect('Content-Type', /json/, done);
     });
 
     it('should return an error for summary request of invalid market', done => {
       request(app)
         .get('/markets/summary?market=SEAN-COINS')
-        .expect(400)
-        .end((err, res) => {
-          if (err) throw err;
-          done();
-        });
+        .expect(400, done);
     });
-
-  });
-  
-  describe('bittrex tickers', () => {
-    xit('should return ticker for a given market', done => {
-      request(app)
-        .get('/markets/ticker?market=BTC-ETH')
-        .expect(200)
-        .end((err, res) => {
-          if (err) throw err;
-          done();
-        });
-    });
-
+    
     it('should return error when fetching ticker for an invalid market', done => {
       request(app)
-        .get('/markets/ticker?market=SMB-COINAGE')
-        .expect(400)
-        .end((err, res) => {
-          if (err) throw err;
-          done();
-        });
-    })
+        .get('/markets/ticker?market=foobarmcescherpainting')
+        .expect(400, done);
+    });
+
+    it('should return ticker for a given market', done => {
+      request(app)
+        .get('/markets/ticker?market=BTC-ETH')
+        .expect(200, done);
+    });
+
   });

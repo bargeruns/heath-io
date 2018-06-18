@@ -1,6 +1,5 @@
-const app = require('../app.js');
+const app = require('../app.js').app;
 const request = require('supertest');
-const io     = require('socket.io-client');
 
 describe('express app', () => {
   it('should serve client app at /', (done) => {

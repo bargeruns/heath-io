@@ -1,16 +1,15 @@
 const axios = require('axios');
 
 module.exports = function fetchMarketTicker(req, res, next) {
-  console.info('fetching market ticker for market: ' + req.query.market);
-
-  axios.get(`https://bittrex.com/api/v1.1/public/getticker?market=${req.query.market}`)
+  const { market } = req.query;
+  axios.get(`https://bittrex.com/api/v1.1/public/getticker?market=${market}`)
     .then(response => {
-      if (response.data.success === false) {
+      if (!response.data.success) {
         const msg = `Error fetching current ticker for market ${market}: ${response.data.message}`;
-        console.error(msg);
-        return res.status(400).send(new Error(msg));
+        console.log(msg);
+        return res.status(400).send({message: msg});
       }
-      return res.status(200).json(response.data.result);
+      return res.status(200).send(response.data.result);
     })
     .catch(err => {
       return res.send(err);

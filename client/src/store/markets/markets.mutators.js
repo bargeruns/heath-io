@@ -1,5 +1,5 @@
 export const mutations = {
-  setMarketList(state, marketList = []) {
+  updateMarketList(state, marketList = []) {
     state.marketList = [...state.marketList, ...marketList];
   },
   setSelectedMarket(state, market) {

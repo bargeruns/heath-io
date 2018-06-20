@@ -1,4 +1,8 @@
-import * as io from 'socket.io-client'
 export const actions = {
-  fetchMarketList()
+  fetchMarketList({commit}, io) {
+    io.emit('fetch markets');
+    io.on('market list updated', response => {
+      commit('updateMarketList', response.data);
+    });
+  }
 }

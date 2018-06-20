@@ -15,12 +15,19 @@ function fetchBittrexBooks(market) {
 }
 
 function fetchPoloniexBooks(market) {
-   return axios.get(`https://poloniex.com/public?command=returnOrderBook&currencyPair=BTC_${market}&depth=10`)
+   return axios.get(`https://poloniex.com/public?command=returnOrderBook&currencyPair=BTC_${market}&depth=100`)
     .then(response => {
       if (!response.data) {
         return new Error(`Error retrieving ${market} order book from Poloniex.`);
       }
-      return response.data;
+      const askMap = response.data.asks.map(ask => {
+        return { Quantity: ask[1], Rate: Number(ask[0])};
+      });
+      
+      const bidMap = response.data.bids.map(bid => {
+        return { Quantity: bid[0], Rate: bid[1]};
+      });
+      return { asks: askMap, bids: bidMap };
     })
     .catch(err => new Error(err));
 }
